@@ -76,7 +76,7 @@ h2 {
                                 <input type="text" placeholder="User ID" class="form-control" name="user_id_auth" id="textfield" data-rule-minlength="6" data-rule-required="true">
                             </div>
                         </div>				
-                                        
+                                                        
                         <div class="form-group">					
                             <div class="input-group">
                                 <div class="input-group-addon">
@@ -92,10 +92,10 @@ h2 {
                                 <div class="input-group-addon">
                                     <i class="entypo-users"></i>
                                 </div>
-                                <select name="role" class="form-control" required>
-                                    <option value="" disabled selected>Select Role</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="user">User</option>
+                                <select name="role" class="form-control" required style="color: #000; background-color: #f9f9f9; border: 1px solid #ccc; padding: 5px;">
+                                    <option value="" disabled selected style="color: #888;">Select Role</option>
+                                    <option value="admin" style="color: #000;">Admin</option>
+                                    <option value="user" style="color: #000;">User</option>
                                 </select>
                             </div>
                         </div>
@@ -110,6 +110,9 @@ h2 {
                 
                     <div class="login-bottom-links">
                         <a href="forgot_password.php" class="link">Forgot your password?</a>
+                        <br>
+                        <!-- Add Create Account Option -->
+                        <a href="create_account.php" class="link">Create an Account</a>
                     </div>			
                 </div>
             </div>

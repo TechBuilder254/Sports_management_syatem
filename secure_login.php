@@ -27,27 +27,30 @@ if ($pass_key == "" && $user_id_auth == "") {
 } else {
     $user_id_auth = mysqli_real_escape_string($con, $user_id_auth);
 
-    // Query based on role
+    // Query based on role and username
     $sql = "SELECT * FROM users WHERE username='$user_id_auth' AND role='$role'";
     $result = mysqli_query($con, $sql);
 
-    // Debugging: Check the query and result
+    // Debugging: Print the query and the result
     if (!$result) {
         die("Query Failed: " . mysqli_error($con));
     }
+
+    echo "Query: $sql<br>"; // Debugging: Print the query
+    echo "Number of rows: " . mysqli_num_rows($result) . "<br>"; // Debugging: Print the number of rows
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
 
         // Debugging: Print the hashed password from the database
-        // echo "Hashed Password from DB: " . $row['pass_key'] . "<br>";
+        echo "Hashed Password from DB: " . $row['pass_key'] . "<br>";
 
         // Verify the hashed password
         if (password_verify($pass_key, $row['pass_key'])) {
             session_start();
-            $_SESSION['user_data']  = $user_id_auth;
+            $_SESSION['user_data']  = $row['userid']; // Store the unique user ID
             $_SESSION['logged']     = "start";
-            $_SESSION['full_name']  = $row['full_name'];
+            $_SESSION['full_name']  = $row['username']; // Use 'username' from the database
             $_SESSION['role']       = $row['role']; // Store role in session
 
             // Redirect based on role
