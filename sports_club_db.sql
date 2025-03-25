@@ -67,6 +67,15 @@ INDEX `userid`(`userid`) USING BTREE
 INSERT INTO `users` VALUES (NULL, '1529336794', 'Christiana Mayberry', 'Male', '3362013747', 'christiani@gmail.com', '1968-04-13', '2018-06-18');
 INSERT INTO `users` VALUES (NULL, '1529336795', 'Shreyansh Gupta', 'Male', '3362013747', 'shreyansh@gmail.com', '1998-12-12', '2020-06-10');
 
+-- Modify the users table to add pass_key and role columns
+ALTER TABLE users
+ADD COLUMN pass_key VARCHAR(255) NOT NULL AFTER username,
+ADD COLUMN role ENUM('admin', 'user') NOT NULL DEFAULT 'user' AFTER pass_key;
+
+-- Insert sample admin and user accounts
+INSERT INTO users (userid, username, pass_key, role, gender, mobile, email, dob, joining_date) VALUES
+('1529336796', 'admin1', '$2y$10$XaPY6GZXbGc8LRyvBP/yjOZOYdqG/GE.KUvz9HexIOTYzz3hn9ZS.', 'admin', 'Male', '1234567890', 'admin1@example.com', '1980-01-01', '2023-01-01'),
+('1529336797', 'user1', '$2y$10$XaPY6GZXbGc8LRyvBP/yjOZOYdqG/GE.KUvz9HexIOTYzz3hn9ZS.', 'user', 'Female', '0987654321', 'user1@example.com', '1990-01-01', '2023-01-01');
 -- ----------------------------
 -- Table structure for health_status
 -- ----------------------------
